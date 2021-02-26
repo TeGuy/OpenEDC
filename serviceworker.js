@@ -64,7 +64,7 @@ self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(
         caches.match(fetchEvent.request, { cacheName: staticCacheName, ignoreVary: true }).then(async staticCacheResponse => {
             const requestBody = await fetchEvent.request.clone().text();
-            return staticCacheResponse || fetch(fetchEvent.request)
+            return staticCacheResponse || fetch(fetchEvent.request, {credentials: "include"})
                 .then(async fetchResponse => {
                     const dynamicCache = await caches.open(dynamicCacheName);
                     if (fetchEvent.request.method == "GET") {
