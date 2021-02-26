@@ -24,14 +24,14 @@ export const getModel = async (parameterName, parameter) => {
     //Testquery
     var invocation = new XMLHttpRequest();
 
-    invocation.open('GET', repository.getDownloadUrl(parameter), false);
+    invocation.open('POST', repository.getDownloadUrl(parameter), false);
     invocation.withCredentials = true;
     //invocation.onreadystatechange = handler;
     invocation.send();
 
 
     const response = await fetch(repository.getDownloadUrl(parameter), {
-        method: 'GET',
+        method: 'POST',
         mode: 'cors',
         credentials: "include"
     });
