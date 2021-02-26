@@ -22,6 +22,8 @@ export const getModel = async (parameterName, parameter) => {
     const repository = repositories.find(repository => repository.parameterName == parameterName);
 
     const response = await fetch(repository.getDownloadUrl(parameter), {
+        method: 'GET',
+        mode: 'cors',
         credentials: "include"
     });
     if (!response.ok) throw response.status;
